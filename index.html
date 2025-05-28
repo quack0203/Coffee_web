@@ -200,73 +200,57 @@
 
             <!-- Formspree 表單 -->
             <form 
-            id="offerForm"
-            action="https://formspree.io/f/xpwdvwer" 
-            method="POST" 
-            class="row justify-content-center g-3"
+                action="https://formspree.io/f/xpwdvwer" 
+                method="POST" 
+                class="mb-5"
             >
-                <!-- 折扣碼 -->
-                <div class="col-12 col-md-3">
-                    <input 
+            <!-- 優惠碼 -->
+            <div class="form-group mb-4">
+                <input 
                     type="text" 
                     name="promo_code" 
-                    class="form-control form-control-lg" 
+                    class="form-control bg-transparent border-primary p-4" 
                     placeholder="折扣碼" 
                     pattern="^[Nn][Tt][Uu][Tt]0607$" 
                     title="折扣碼不正確" 
                     required
-                    >
-                </div>
+                />
+            </div>
 
-                <!-- 電話 -->
-                <div class="col-12 col-md-3">
-                    <input 
+            <!-- 電話 -->
+            <div class="form-group mb-4">
+                <input 
                     type="tel" 
                     name="phone" 
-                    class="form-control form-control-lg" 
+                    class="form-control bg-transparent border-primary p-4" 
                     placeholder="您的電話📱" 
                     required
-                    >
-                </div>
+                />
+            </div>
 
-                <!-- 信箱 -->
-                <div class="col-12 col-md-3">
-                    <input 
+            <!-- 信箱 -->
+            <div class="form-group mb-4">
+                <input 
                     type="email" 
                     name="_replyto" 
-                    class="form-control form-control-lg" 
+                    class="form-control bg-transparent border-primary p-4" 
                     placeholder="您的信箱📬" 
                     required
-                    >
-                </div>
+                />
+            </div>
 
-                <!-- 送出按鈕 -->
-                <div class="col-12 col-md-2">
-                    <button 
-                    type="submit" 
-                    class="btn btn-primary btn-lg w-100"
-                    >
+            <!-- 送出按鈕 -->
+            <div>
+                <button 
+                    class="btn btn-primary btn-block font-weight-bold py-3" 
+                    type="submit"
+                >
                     送出🦝
-                    </button>
-                </div>
+                </button>
+            </div>
+
             </form>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content text-center">
-                <div class="modal-header border-0">
-                    <h5 class="modal-title mx-auto" id="thankYouLabel">謝謝您的支持！</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    我們已收到您的資訊，過後將會回信確認，請在留意🥺。
-                </div>
-                <div class="modal-footer border-0 justify-content-center">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">關閉</button>
-                </div>
-                </div>
-            </div>
+
             </div>
 
             
@@ -517,58 +501,49 @@
                             <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
                                 <h1 class="text-white mb-4 mt-5">輸入資訊🦝</h1>
                                 <form 
-                                    action="https://formspree.io/f/xpwdvwer" 
-                                    method="POST" 
-                                    class="mb-5"
-                                >
-                                    <div class="form-group">
-                                        <input 
-                                            type="tel" 
-                                            name="phone" 
-                                            class="form-control bg-transparent border-primary p-4" 
-                                            placeholder="您的電話📱" 
-                                            required
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <input 
-                                            type="email" 
-                                            name="_replyto" 
-                                            class="form-control bg-transparent border-primary p-4" 
-                                            placeholder="您的信箱📬" 
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <button 
-                                            class="btn btn-primary btn-block font-weight-bold py-3" 
-                                            type="submit"
-                                        >
-                                            送出🦝
-                                        </button>
-                                    </div>
-                                </form>
+                                action="https://formspree.io/f/xpwdvwer" 
+                                method="POST" 
+                                class="mb-5"
+                            >
+         
+                            
+                                <!-- 電話 -->
+                                <div class="form-group">
+                                    <input 
+                                        type="tel" 
+                                        name="phone" 
+                                        class="form-control bg-transparent border-primary p-4" 
+                                        placeholder="您的電話📱" 
+                                        required
+                                    />
+                                </div>
+                            
+                                <!-- 信箱 -->
+                                <div class="form-group">
+                                    <input 
+                                        type="email" 
+                                        name="_replyto" 
+                                        class="form-control bg-transparent border-primary p-4" 
+                                        placeholder="您的信箱📬" 
+                                        required
+                                    />
+                                </div>
+                            
+                                <!-- 送出按鈕 -->
+                                <div>
+                                    <button 
+                                        class="btn btn-primary btn-block font-weight-bold py-3" 
+                                        type="submit"
+                                    >
+                                        送出🦝
+                                    </button>
+                                </div>
+                            </form>
+                            
                             </div>
                         </div>
 
-                                                <!-- Modal -->
-                        <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content text-center">
-                                <div class="modal-header border-0">
-                                <h5 class="modal-title mx-auto" id="thankYouLabel">謝謝您的支持！</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                我們已收到您的資訊，過後將會回信確認，請在留意🥺。
-                                </div>
-                                <div class="modal-footer border-0 justify-content-center">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">關閉</button>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-
+         
   
 
 
@@ -648,7 +623,6 @@
 
 
 
-    <script src="js/form-handler.js" defer></script>
     <script src="js/tooltip.js"></script>
     
 
