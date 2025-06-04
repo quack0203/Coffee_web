@@ -2,207 +2,554 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <title>呱灰🦝🩲 - 喝林ㄟ嘎灰☕</title>
-    <link rel="shortcut icon" type="image/png" href="img/background_coffee_2.png">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free Website Template" name="keywords">
-    <meta content="Free Website Template" name="description">
+  <meta charset="utf-8">
+  <title>呱灰🦝🩲 - 喝林ㄟ嘎灰☕</title>
+  <link rel="shortcut icon" type="image/png" href="img/background_coffee_2.png">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Free Website Template" name="keywords">
+  <meta content="Free Website Template" name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+  <!-- Favicon -->
+  <link href="img/favicon.ico" rel="icon">
 
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
 
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+    rel="stylesheet"
+  />
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+  <!-- Libraries Stylesheet -->
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link
+    href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css"
+    rel="stylesheet"
+  />
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/style.min.css" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Customized Bootstrap Stylesheet -->
+  <link href="css/style.min.css" rel="stylesheet">
+
+  <!-- 額外自訂 CSS：微調 Modal 內元素間距與 Carousel 大小 -->
+  <style>
+    /* 卡片（咖啡／水果茶）未選中／選中樣式 */
+    .select-card {
+      border: 2px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .select-card:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .select-card.selected {
+      border-color: #ffcc00;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 購物車表格微調 */
+    #cartTable th,
+    #cartTable td {
+      vertical-align: middle;
+    }
+
+    /* Modal 內表單間距 */
+    #modalFormContainer .form-group {
+      margin-bottom: 1rem;
+    }
+
+    /* Carousel 圖片最大高度 */
+    #modalCarousel img {
+      max-height: 300px;
+      object-fit: cover;
+    }
+  </style>
 </head>
 
 <body>
-    <!-- Navbar Start -->
-    <div class="container-fluid p-0 nav-bar">
-        <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
-            <a href="https://youtu.be/dQw4w9WgXcQ?si=bPDSNq-joRsHsYeX" class="navbar-brand px-lg-4 m-0" >
-                <img src="img/background_coffee_2.png" alt="KOPPEE" style="width: 100%; max-width: 100px; height: auto;">
-                <span class="text-white h4 mb-0"> 偶愛呱灰🦝🧡 </span>
-            </a>
-            
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav ml-auto p-4">
-                    <a href="index.html" class="nav-item nav-link ">首頁</a>
-                    <a href="about.html" class="nav-item nav-link">關於我</a>
-                    <a href="service.html" class="nav-item nav-link">服務</a>
-                    <a href="menu.html" class="nav-item nav-link">菜單</a>
-                    <a href="reservation.html" class="nav-item nav-link  active">訂購</a>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
-        <div class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5" style="min-height: 400px">
-            <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">非常好訂購💪</h1>
-            <div class="d-inline-flex mb-lg-5">
-                <p class="m-0 text-white"><a class="text-white" href="">首頁</a></p>
-                <p class="m-0 text-white px-2">/</p>
-                <p class="m-0 text-white">訂購</p>
-            </div>
+  <!-- Navbar Start -->
+  <div class="container-fluid p-0 nav-bar">
+    <nav class="navbar navbar-expand-lg bg-none navbar-dark py-3">
+      <a
+        href="#"
+        class="navbar-brand px-lg-4 m-0"
+      >
+        <img
+          src="img/background_coffee_2.png"
+          alt="KOPPEE"
+          style="width: 100%; max-width: 100px; height: auto;"
+        />
+        <span class="text-white h4 mb-0"> 偶愛呱灰🦝🧡 </span>
+      </a>
+
+      <button
+        type="button"
+        class="navbar-toggler"
+        data-toggle="collapse"
+        data-target="#navbarCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav ml-auto p-4">
+          <a href="index.html" class="nav-item nav-link">首頁</a>
+          <a href="about.html" class="nav-item nav-link">關於我</a>
+          <a href="service.html" class="nav-item nav-link">服務</a>
+          <a href="menu.html" class="nav-item nav-link">菜單</a>
+          <a href="reservation.html" class="nav-item nav-link active">訂購</a>
         </div>
+      </div>
+    </nav>
+  </div>
+  <!-- Navbar End -->
+
+  <!-- Page Header Start -->
+  <div class="container-fluid page-header mb-5 position-relative overlay-bottom">
+    <div
+      class="d-flex flex-column align-items-center justify-content-center pt-0 pt-lg-5"
+      style="min-height: 400px"
+    >
+      <h1 class="display-4 mb-3 mt-0 mt-lg-5 text-white text-uppercase">
+        非常好訂購💪
+      </h1>
+      <div class="d-inline-flex mb-lg-5">
+        <p class="m-0 text-white"><a class="text-white" href="">首頁</a></p>
+        <p class="m-0 text-white px-2">/</p>
+        <p class="m-0 text-white">訂購</p>
+      </div>
     </div>
-    <!-- Page Header End -->
+  </div>
+  <!-- Page Header End -->
 
-<div class="section-title">
-        <h4 class="text-primary text-uppercase" style="letter-spacing: 5px; font-size:40px;">訂購服務</h4>
-        <h1 class="display-4"></h1>
+  <div class="section-title">
+    <h4
+      class="text-primary text-uppercase"
+      style="letter-spacing: 5px; font-size:40px;"
+    >
+      訂購服務
+    </h4>
+    <h1 class="display-4"></h1>
+  </div>
+
+  <!-- ===== 1. 「飲品卡片選擇」區塊 ===== -->
+  <div class="container my-5">
+    <div class="row justify-content-center">
+      <!-- 卡片：咖啡 -->
+      <div class="col-sm-6 col-md-4 mb-3">
+        <div class="card select-card" id="coffeeCard">
+          <img
+            src="img/q0.jpg"
+            class="card-img-top"
+            alt="咖啡示意圖"
+          />
+          <div class="card-body text-center">
+            <h5 class="card-title">咖啡</h5>
+          </div>
+        </div>
+      </div>
+      <!-- 卡片：水果茶 -->
+      <div class="col-sm-6 col-md-4 mb-3">
+        <div class="card select-card" id="fruitTeaCard">
+          <img
+            src="img/q9.jpg"
+            class="card-img-top"
+            alt="水果茶示意圖"
+          />
+          <div class="card-body text-center">
+            <h5 class="card-title">水果茶</h5>
+          </div>
+        </div>
+      </div>
     </div>
-        <!-- Reservation Start -->
-        <div class="container-fluid my-5">
-            <div class="container">
-                <div class="reservation position-relative overlay-top overlay-bottom">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 my-5 my-lg-0">
-                            <div class="p-5">
-                                <div class="mb-4">
-                                    <h1 class="display-3 text-primary">訂購服務</h1>
-                                    <h1 class="text-white">如需要者歡迎來電和寄信</h1>
-                                </div>
-                                <p class="text-white">目前僅能用電話和訊息來做訂購服務<br>但我們絕對不失服務品質<br>款類品項會在信中與您聯繫</p>
-                            </div>
-                        </div>
+  </div>
+  <!-- ===== 上方區塊結束 ===== -->
 
-                        <div class="col-lg-6">
-                            <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
-                                <h1 class="text-white mb-4 mt-5">輸入資訊🦝</h1>
-                                <form 
-                                action="https://formspree.io/f/xpwdvwer" 
-                                method="POST" 
-                                class="mb-5"
-                            >
-         
-                            
-                                <!-- 電話 -->
-                                <div class="form-group">
-                                    <input 
-                                        type="tel" 
-                                        name="phone" 
-                                        class="form-control bg-transparent border-primary p-4" 
-                                        placeholder="您的電話📱" 
-                                        required
-                                    />
-                                </div>
-                            
-                                <!-- 信箱 -->
-                                <div class="form-group">
-                                    <input 
-                                        type="email" 
-                                        name="_replyto" 
-                                        class="form-control bg-transparent border-primary p-4" 
-                                        placeholder="您的信箱📬" 
-                                        required
-                                    />
-                                </div>
-                            
-                                <!-- 送出按鈕 -->
-                                <div>
-                                    <button 
-                                        class="btn btn-primary btn-block font-weight-bold py-3" 
-                                        type="submit"
-                                    >
-                                        送出🦝
-                                    </button>
-                                </div>
-                            </form>
-                            
-                            </div>
-                        </div>
+  <!-- ===== 2. 查看購物車按鈕 ===== -->
+  <div class="container mb-5">
+    <div class="row">
+      <div class="col text-center">
+        <button id="toggleCartBtn" class="btn btn-secondary btn-lg">
+          查看購物車
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- ===== 按鈕區塊結束 ===== -->
 
-         
-  
-
-
-
-                    </div>
-                </div>
+  <!-- ===== 3. 訂單送出區塊（保留原本版面） ===== -->
+  <div class="container-fluid my-5">
+    <div class="container">
+      <div class="reservation position-relative overlay-top overlay-bottom">
+        <div class="row align-items-center">
+          <!-- 左側文字說明 -->
+          <div class="col-lg-6 my-5 my-lg-0">
+            <div class="p-5">
+              <div class="mb-4">
+                <h1 class="display-3 text-primary">送出訂單</h1>
+                <h1 class="text-white">過後將會寄信確認<br>並且提供轉帳QR CODE</h1>
+              </div>
+              <p class="text-white">
+                目前僅能用轉帳做訂購服務👉👈🥺<br>
+                但我們絕對不失服務品質<br>
+                款類品項會在信中與您確認
+              </p>
             </div>
+          </div>
+          <!-- 右側深色背景＋送出表單 -->
+          <div class="col-lg-6">
+            <div class="text-center p-5" style="background: rgba(51, 33, 29, .8);">
+              <h1 class="text-white mb-4 mt-5">輸入您的資訊🦝</h1>
+              <form
+                id="orderForm"
+                action="https://formspree.io/f/xpwdvwer"
+                method="POST"
+                class="mb-5"
+              >
+                <!-- 隱藏欄位：把購物車明細（文字）放到這 -->
+                <textarea
+                  name="message"
+                  id="orderDetailsInput"
+                  style="display: none;"
+                ></textarea>
+                <!-- 隱藏欄位：總金額 -->
+                <input
+                  type="hidden"
+                  name="totalAmount"
+                  id="totalAmountInput"
+                  value=""
+                />
+
+                <!-- 電話 -->
+                <div class="form-group">
+                  <input
+                    type="tel"
+                    name="phone"
+                    class="form-control bg-transparent border-primary p-4"
+                    placeholder="您的電話📱"
+                    required
+                  />
+                </div>
+
+                <!-- 信箱 -->
+                <div class="form-group">
+                  <input
+                    type="email"
+                    name="_replyto"
+                    class="form-control bg-transparent border-primary p-4"
+                    placeholder="您的信箱📬"
+                    required
+                  />
+                </div>
+
+                <!-- 送出按鈕 -->
+                <div>
+                  <button
+                    class="btn btn-primary btn-block font-weight-bold py-3"
+                    type="submit"
+                    id="submitOrderBtn"
+                    disabled
+                  >
+                    送出🦝
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-    <!-- Reservation End -->
+      </div>
+    </div>
+  </div><!-- ===== 訂單送出結束 ===== -->
 
-
-
-    <!-- Footer Start -->
-        <div class="container-fluid footer text-white mt-5 pt-5 px-3 px-lg-5 position-relative overlay-top">
-            <div class="row justify-content-center text-center">
-
-            <!-- 聯繫地點 -->
-            <div class="col-md-4 col-lg-3 mb-5 mx-3">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px; font-size: 22px;">聯繫地點</h4>
-                <p style="font-size: 18px;"><i class="fa fa-map-marker-alt mr-2"></i>臺灣 桃園市</p>
-                <p style="font-size: 18px;"><i class="fa fa-phone-alt mr-2"></i>0912 923 951</p>
-                <p class="m-0" style="font-size: 18px;"><i class="fa fa-envelope mr-2"></i>hcu551263@gmail.com</p>
-            </div>
-
-            <!-- 追蹤偶們 -->
-            <div class="col-md-4 col-lg-3 mb-5 mx-3">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px; font-size: 22px;">追蹤偶們📱</h4>
-                <p style="font-size: 18px;">這是我的其餘聯繫方法😎</p>
-                <div class="d-flex justify-content-center">
-                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="https://youtube.com/channel/UC0gIQCDXrhj4_fnNGa5_Rsg?si=ZMuWL1I-xS_KHjG4"><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-lg btn-outline-light btn-lg-square mr-2" href="https://www.facebook.com/share/1MxLk1ZyBn/"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-lg btn-outline-light btn-lg-square" href="https://www.instagram.com/326dxy?igsh=MW54Z3F5bXNjb2V4bQ=="><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-
-            <!-- 攤位時間 -->
-            <div class="col-md-4 col-lg-3 mb-5 mx-3">
-                <h4 class="text-white text-uppercase mb-4" style="letter-spacing: 3px; font-size: 22px;">當日攤位時間🕰️</h4>
-                <div style="font-size: 18px;">
-                    <h6 class="text-white text-uppercase">6/7 日 攤位(不知道幾號)</h6>
-                    <p>9:00 AM - 4:00 PM</p>
-                </div>
-            </div>
-
+  <!-- ===== 4. 購物車 Modal ===== -->
+  <div
+    class="modal fade"
+    id="cartModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="cartModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">購物車</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="關閉"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
+        <div class="modal-body">
+          <div class="table-responsive">
+            <table class="table table-bordered" id="cartTable">
+              <thead class="thead-light">
+                <tr>
+                  <th>品項</th>
+                  <th>選項</th>
+                  <th>單價</th>
+                  <th>數量</th>
+                  <th>小計</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="cartItems">
+                <!-- JS 動態插入 -->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th colspan="3" class="text-right">總件數：</th>
+                  <th id="totalQuantity">0</th>
+                  <th colspan="2"></th>
+                </tr>
+                <tr>
+                  <th colspan="3" class="text-right">總金額：</th>
+                  <th id="totalPrice">$0</th>
+                  <th colspan="2"></th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            關閉
+          </button>
+        </div>
+      </div>
+    </div>
+  </div><!-- ===== 購物車 Modal 結束 ===== -->
 
-        <div class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5" style="border-color: rgba(256, 256, 256, .1) !important;">
-        <p class="mb-2 text-white" style="font-size: 16px;">
-            ©改編者：<a class="font-weight-bold" href="https://quack0203.github.io/Ziyuan/anoder_web_test/index.html" target="_blank">梓騵🦝</a> ｜ 原始模板設計：<a class="font-weight-bold" href="https://htmlcodex.com" target="_blank">HTML Codex</a>
+  <!-- ===== 5. 選項 Modal（左右佈局 + 輪播） ===== -->
+  <div
+    class="modal fade"
+    id="optionsModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="optionsModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="optionsModalLabel">請選擇品項細節</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="關閉"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <!-- 右半：輪播 -->
+            <div class="col-md-6" id="carouselContainer"></div>
+            <!-- 左半：表單 -->
+            <div class="col-md-6" id="modalFormContainer"></div>
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            取消
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="confirmAddBtn"
+            disabled
+          >
+            確認加入購物車
+          </button>
+        </div>
+      </div>
+    </div>
+  </div><!-- ===== 選項 Modal 結束 ===== -->
+
+  <!-- ===== 6. 送出確認 Modal ===== -->
+  <div
+    class="modal fade"
+    id="confirmSubmitModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="confirmSubmitModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmSubmitModalLabel">確認送出</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="關閉"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          確定要送出以下商品嗎？
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+          >
+            否
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="submitConfirmBtn"
+          >
+            是
+          </button>
+        </div>
+      </div>
+    </div>
+  </div><!-- ===== 送出確認 Modal 結束 ===== -->
+
+  <!-- Footer Start -->
+  <div
+    class="container-fluid footer text-white mt-5 pt-5 px-3 px-lg-5 position-relative overlay-top"
+  >
+    <div class="row justify-content-center text-center">
+      <!-- 聯繫地點 -->
+      <div class="col-md-4 col-lg-3 mb-5 mx-3">
+        <h4
+          class="text-white text-uppercase mb-4"
+          style="letter-spacing: 3px; font-size: 22px;"
+        >
+          聯繫地點
+        </h4>
+        <p style="font-size: 18px;">
+          <i class="fa fa-map-marker-alt mr-2"></i>臺灣 桃園市
         </p>
-        </div>
+        <p style="font-size: 18px;">
+          <i class="fa fa-phone-alt mr-2"></i>0912 923 951
+        </p>
+        <p class="m-0" style="font-size: 18px;">
+          <i class="fa fa-envelope mr-2"></i>hcu551263@gmail.com
+        </p>
+      </div>
 
+      <!-- 追蹤偶們 -->
+      <div class="col-md-4 col-lg-3 mb-5 mx-3">
+        <h4
+          class="text-white text-uppercase mb-4"
+          style="letter-spacing: 3px; font-size: 22px;"
+        >
+          追蹤偶們📱
+        </h4>
+        <p style="font-size: 18px;">這是我的其餘聯繫方法😎</p>
+        <div class="d-flex justify-content-center">
+          <a
+            class="btn btn-lg btn-outline-light btn-lg-square mr-2"
+            href="#"
+            ><i class="fab fa-youtube"></i
+          ></a>
+          <a
+            class="btn btn-lg btn-outline-light btn-lg-square mr-2"
+            href="#"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a
+            class="btn btn-lg btn-outline-light btn-lg-square"
+            href="#"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </div>
+      </div>
+
+      <!-- 攤位時間 -->
+      <div class="col-md-4 col-lg-3 mb-5 mx-3">
+        <h4
+          class="text-white text-uppercase mb-4"
+          style="letter-spacing: 3px; font-size: 22px;"
+        >
+          當日攤位時間🕰️
+        </h4>
+        <div style="font-size: 18px;">
+          <h6 class="text-white text-uppercase">
+            6/7 日 攤位(不知道幾號)
+          </h6>
+          <p>9:00 AM - 4:00 PM</p>
+        </div>
+      </div>
     </div>
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+    <div
+      class="container-fluid text-center text-white border-top mt-4 py-4 px-sm-3 px-md-5"
+      style="border-color: rgba(256, 256, 256, .1) !important;"
+    >
+      <p class="mb-2 text-white" style="font-size: 16px;">
+        ©改編者：
+        <a
+          class="font-weight-bold"
+          href="#"
+          target="_blank"
+          >梓騵🦝</a
+        >
+        ｜ 原始模板設計：
+        <a
+          class="font-weight-bold"
+          href="https://htmlcodex.com"
+          target="_blank"
+          >HTML Codex</a
+        >
+      </p>
+    </div>
+  </div>
+  <!-- Footer End -->
 
+  <!-- Back to Top -->
+  <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+    ><i class="fa fa-angle-double-up"></i
+  ></a>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- jQuery & Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+  ></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/waypoints/waypoints.min.js"></script>
+  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="lib/tempusdominus/js/moment.min.js"></script>
+  <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+  <script
+    src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"
+  ></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+  <!-- Contact Javascript File -->
+  <script src="mail/jqBootstrapValidation.min.js"></script>
+  <script src="mail/contact.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+  <!-- 載入新的 main.js（取代舊 order.js） -->
+  <script src="js/order.js"></script>
 </body>
-
 </html>
