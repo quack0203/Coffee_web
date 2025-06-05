@@ -238,54 +238,68 @@ document.addEventListener("DOMContentLoaded", function () {
   // ======================
   // renderCart(): 把 cartArr 內容渲染到購物車表格，計算總計，更新隱藏欄位
   // ======================
-  function renderCart() {
-    cartItemsTbody.innerHTML = "";
-    let totalQty = 0;
-    let totalAmt = 0;
+ function renderCart() {
+  cartItemsTbody.innerHTML = "";
+  let totalQty = 0;
+  let totalAmt = 0;
 
-    cartArr.forEach((it, index) => {
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td>${it.name}</td>
-        <td>${it.options}</td>
-        <td>$${it.price}</td>
-        <td>${it.quantity}</td>
-        <td>$${it.subtotal}</td>
-        <td>
-          <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">
-            刪除
-          </button>
-        </td>
-      `;
-      cartItemsTbody.appendChild(tr);
-      totalQty += it.quantity;
-      totalAmt += it.subtotal;
-    });
+  cartArr.forEach((it, index) => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${it.name}</td>
+      <td>${it.options}</td>
+      <td>$${it.price}</td>
+      <td>${it.quantity}</td>
+      <td>$${it.subtotal}</td>
+      <td>
+        <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">
+          刪除
+        </button>
+      </td>
+    `;
+    cartItemsTbody.appendChild(tr);
+    totalQty += it.quantity;
+    totalAmt += it.subtotal;
+  });
 
-    totalQuantityTd.textContent = totalQty;
-    totalPriceTd.textContent = `$${totalAmt}`;
+  // 更新「總件數」與「總金額」
+  totalQuantityTd.textContent = totalQty;
+  totalPriceTd.textContent = `$${totalAmt}`;
 
-    // 更新隱藏的訂單明細與總金額欄位
-    let detailsStr = "";
-    cartArr.forEach((it, idx) => {
-      detailsStr += `${idx + 1}. ${it.name} - ${it.options} - 數量：${it.quantity} - 小計：${it.subtotal} 元\n`;
-    });
-    orderDetailsInput.value = detailsStr;
-    totalAmountInput.value = totalAmt;
-
-    // 啟用 / 禁用「送出訂單」按鈕
-    submitOrderBtn.disabled = cartArr.length === 0;
-
-    // 綁定「刪除按鈕」
-    const deleteButtons = cartItemsTbody.querySelectorAll(".delete-btn");
-    deleteButtons.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        const idx = parseInt(btn.getAttribute("data-index"));
-        cartArr.splice(idx, 1); // 從陣列移除
-        renderCart();          // 重新渲染
-      });
-    });
+  // ===== 新增：計算折扣後金額，並顯示 / 隱藏 =====
+  if (totalAmt > 0) {
+    const discountedTotal = totalAmt - 5; 
+    // 把扣 5 元後的數字放到 <span id="discountedAmount">
+    document.getElementById("discountedAmount").textContent = discountedTotal;
+    // 顯示「折價後為」這一段
+    document.getElementById("discountedText").style.display = "block";
+  } else {
+    // 購物車沒東西時就隱藏
+    document.getElementById("discountedText").style.display = "none";
   }
+
+  // 更新隱藏的訂單明細與總金額欄位
+  let detailsStr = "";
+  cartArr.forEach((it, idx) => {
+    detailsStr += `${idx + 1}. ${it.name} - ${it.options} - 數量：${it.quantity} - 小計：${it.subtotal} 元\n`;
+  });
+  orderDetailsInput.value = detailsStr;
+  totalAmountInput.value = totalAmt;
+
+  // 啟用 / 禁用「送出訂單」按鈕
+  submitOrderBtn.disabled = cartArr.length === 0;
+
+  // 綁定「刪除按鈕」
+  const deleteButtons = cartItemsTbody.querySelectorAll(".delete-btn");
+  deleteButtons.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      const idx = parseInt(btn.getAttribute("data-index"));
+      cartArr.splice(idx, 1); // 從陣列移除
+      renderCart();          // 重新渲染
+    });
+  });
+}
+
 
   // ======================
   // 表單 submit 時，先跳出「確認送出」Modal
