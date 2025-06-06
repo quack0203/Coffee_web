@@ -68,16 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let formHTML = "";
     if (selectedDrink === "coffee") {
       formHTML = `
-        <div class="form-group">
-          <label for="coffeeRoast" class="font-weight-bold">烘焙度：</label>
-          <select id="coffeeRoast" class="form-control">
-            <option value="" disabled selected>請選擇烘焙度</option>
-            <option value="淺中焙">淺中焙</option>
-            <option value="中焙">中焙</option>
-            <option value="中深焙">中深焙</option>
-            <option value="深焙">深焙</option>
-          </select>
-        </div>
+
         <div class="form-group">
           <label for="coffeeFlavor" class="font-weight-bold">口味：</label>
           <select id="coffeeFlavor" class="form-control">
