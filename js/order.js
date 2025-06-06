@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const cartItemsTbody = document.getElementById("cartItems");
   const totalQuantityTd = document.getElementById("totalQuantity");
   const totalPriceTd = document.getElementById("totalPrice");
+  const discountedPriceSpan = document.getElementById("discountedPrice"); // 如果 HTML 有這一欄
   const orderDetailsInput = document.getElementById("orderDetailsInput");
   const totalAmountInput = document.getElementById("totalAmountInput");
   const submitOrderBtn = document.getElementById("submitOrderBtn");
@@ -193,7 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
       options: "",
       price: 65,
       quantity: qty,
-      subtotal: 65 * qty,
+      subtotal: 65 * qty, // 原始小計
     };
 
     if (selectedDrink === "coffee") {
@@ -224,7 +225,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ======================
-  // renderCart(): 把 cartArr 內容渲染到購物車表格，計算總計，只對第一筆品項扣 5 元，其他維持原價
+  // renderCart(): 把 cartArr 內容渲染到購物車表格，
+  // 同時計算「原價總金額」與「折扣後總金額」（只對第一筆品項扣 5 元）
   // ======================
   function renderCart() {
     cartItemsTbody.innerHTML = "";
@@ -237,11 +239,11 @@ document.addEventListener("DOMContentLoaded", function () {
       // 原本的 subtotal
       const originalSubtotal = it.subtotal; // it.price * it.quantity
 
-      // 第一筆扣 5 元，最低為 0
-      let displayedSubtotal = originalSubtotal;
+      // 第一筆品項折 5 元，其餘維持原價
+      let discountedItemSubtotal = originalSubtotal;
       if (index === 0) {
-        displayedSubtotal = originalSubtotal - 5;
-        if (displayedSubtotal < 0) displayedSubtotal = 0;
+        discountedItemSubtotal = originalSubtotal - 5;
+        if (discountedItemSubtotal < 0) discountedItemSubtotal = 0;
       }
 
       tr.innerHTML = `
@@ -249,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <td>${it.options}</td>
         <td>$${it.price}</td>
         <td>${it.quantity}</td>
-        <td>$${displayedSubtotal}</td>
+        <td>$${discountedItemSubtotal}</td>
         <td>
           <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">
             刪除
@@ -261,27 +263,38 @@ document.addEventListener("DOMContentLoaded", function () {
       totalQty += it.quantity;
     });
 
-    // 計算折扣後的總金額，把所有顯示的小計加起來
-    let discountedAmt = 0;
+    // 計算「原價總金額」和「折扣後總金額」
+    let originalTotal = 0;
+    let discountedTotal = 0;
     cartArr.forEach((it, idx) => {
       const orig = it.subtotal;
+      originalTotal += orig;
+
       if (idx === 0) {
         let firstSub = orig - 5;
         if (firstSub < 0) firstSub = 0;
-        discountedAmt += firstSub;
+        discountedTotal += firstSub;
       } else {
-        discountedAmt += orig;
+        discountedTotal += orig;
       }
     });
 
-    // 如果購物車空，總金額設為 0
-    if (cartArr.length === 0) discountedAmt = 0;
+    // 如果沒有任何品項，兩邊都設為 0
+    if (cartArr.length === 0) {
+      originalTotal = 0;
+      discountedTotal = 0;
+    }
 
-    // 把結果顯示在畫面上
+    // 把「原價總金額」顯示到 totalPriceTd
     totalQuantityTd.textContent = totalQty;
-    totalPriceTd.textContent = `$${discountedAmt}`;
+    totalPriceTd.textContent = `$${originalTotal}`;
 
-    // 更新隱藏的訂單明細與送給後端的總金額
+    // 把「折扣後總金額」顯示到對應的欄位 (如果 HTML 有一欄顯示折後價)
+    if (discountedPriceSpan) {
+      discountedPriceSpan.textContent = `$${discountedTotal}`;
+    }
+
+    // 更新隱藏的訂單明細與送給後端的金額 (用折扣後總金額)
     let detailsStr = "";
     cartArr.forEach((it, idx) => {
       const orig = it.subtotal;
@@ -293,12 +306,12 @@ document.addEventListener("DOMContentLoaded", function () {
       detailsStr += `${idx + 1}. ${it.name} - ${it.options} - 數量：${it.quantity} - 小計：${sub} 元\n`;
     });
     orderDetailsInput.value = detailsStr;
-    totalAmountInput.value = discountedAmt;
+    totalAmountInput.value = discountedTotal;
 
     // 啟用 / 禁用「送出訂單」按鈕
     submitOrderBtn.disabled = cartArr.length === 0;
 
-    // 綁定「刪除按鈕」
+    // 綁定「刪除按鈕」，刪掉後再重新渲染
     const deleteButtons = cartItemsTbody.querySelectorAll(".delete-btn");
     deleteButtons.forEach((btn) => {
       btn.addEventListener("click", function () {
