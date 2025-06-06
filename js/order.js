@@ -334,6 +334,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // 點「是」後真實提交表單；點「否」只關閉確認 Modal
   // ======================
   submitConfirmBtn.addEventListener("click", function () {
+    // 先把「確認送出」Modal 隱藏
+    confirmSubmitModal.modal("hide");
+    // 再執行真正的表單送出
     orderForm.submit();
   });
 
